@@ -5,7 +5,9 @@ El proyecto consiste en crear un programa que permita al usuario encontrar un ho
 ## Integrantes del equipo
 
 Ana Boston Berned. Usuario: anaboston
+
 Gonzalo Gil Vallejo. Usuario:
+
 Silvia Hernández Cuerdas. Usuario:
 
 ## Objetivos del trabajo
