@@ -1,12 +1,10 @@
-# [Buscador de Hoteles]
+# Buscador de Hoteles
 
 [Descripción breve del proyecto a realizar (2-3 frases).]
 
 ## Integrantes del equipo
 
-[Nombres, apellidos, y usuario GitHub de los integrantes del equipo.
-
-Ana Boston Berned. Usuario: anaboston]
+Ana Boston Berned. Usuario: anaboston
 
 ## Objetivos del trabajo
 
