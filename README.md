@@ -12,4 +12,8 @@ Silvia Hernández Cuerdas. Usuario:
 
 ## Objetivos del trabajo
 
-[Lista de los objetivos que se persiguen con el trabajo propuesto.]
+- Facilitar a las personas la búsqueda y reserva de un hotel que se adapte a sus preferencias.
+
+- La posibilidad de crear un usuario en el que se almacene los datos de la reserva.
+
+- Crear un apartado de comentarios en el que el usuario pueda escribir y leer reseñas anteriores.
