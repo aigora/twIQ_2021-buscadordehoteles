@@ -8,9 +8,9 @@ struct ususario {
 int main() {
 	char opcion;
 	char opcion2;
-	int i, dato;
+	int i, dato, contador=0, comp;
 	FILE * fregistro;
-	struct usuario crear[100]
+	struct usuario usuario[100]
 	
 	printf("----------------------\n");
 	printf("\tMenu:\n");
@@ -26,7 +26,6 @@ int main() {
 	switch(opcion) {
 		case 'r':
 		case 'R':
-			printf("Aqui el usuario se registraria\n");
 			fregistro=fopen("Registro.txt","r");
 			
 			if(fregistro == NULL) {
@@ -34,16 +33,49 @@ int main() {
 				return 0;
 			}
 			
-			fscanf(fregistro,"%d",&dato);			
-			fclose(fregistro);
-			printf("El dato leido es %d\n", dato);
+			while(fscanf(fregistro,"%d %s %s %d", &contador+1, usuario[contador].nombre, usuario[contador].clave, &dato) != EOF) {
+				printf("%d %s %s %d", contador+1, usuario[contador].nombre, usuario[contador].clave, dato);
+				contador++;
+			}
 			
-			
-			while(
+			i=contador+1;
 				
 			do{
 				printf("Introduzca el nombre de usuario:\n");
-				scanf("%s",crear[i].nombre);
+				scanf("%s",usuario[i].nombre);
+				
+				for(contador=0; contador<i; contador++) {
+					comp=strcmp(usuario[contador].nombre, usuario[i].nombre);
+					if(comp==0) {
+						printf("El nombre de usuario introducido ya existe\n");
+						break;
+					}
+					
+					else if(comp==1) {
+						printf("Se ha registrado el nombre introducido\n");
+						break;
+					}
+					
+				}
+			}
+			while(comp=0);			
+						
+			fclose(fregistro);
+			
+			fregistro=fopen("Registro.txt","w");
+			if(fregistro==NULL) {
+				printf("No se ha podido abrir el fichero Registro correctamente\n");
+				return 0;
+			}
+			printf("Introduzca su clave:\n");
+			scanf("%d", &usuario[i].clave);
+			printf("%d %s %d\n", i, usuario[i].nombre, usuario[i].clave);
+			for(i=0; i<=contador; i++) {
+				fprintf(fregistro, "%d %s %d\n", i, usuario[i].nombre, usuario[i].clave);
+				printf("%d %s %d\n", i, usuario[i].nombre, usuario[i].clave);
+			}
+			fclose(fregistro);
+			break;			
 				
 
 			printf("--------------------------\n");
@@ -94,8 +126,59 @@ int main() {
 			break;
 		case 'i':
 		case 'I':
-			printf("Aqui el usuario iniciaria sesion\n");
-
+			
+			fregistro=fopen("Registro.txt","r");
+			
+			if(fregistro == NULL) {
+				printf("No se ha podido abrir el fichero Registro correctamente\n");
+				return 0;
+			}
+			
+			
+			while(fscanf(fregistro,"%d %s %s %d", &contador+1, usuario[contador].nombre, usuario[contador].clave, &dato) != EOF) {
+				printf("%d %s %s %d", contador+1, usuario[contador].nombre, usuario[contador].clave, dato);
+				contador++;
+			}
+			
+			i=contador+1;
+				
+			do{
+				printf("Introduzca el nombre de usuario:\n");
+				scanf("%s",usuario[i].nombre);
+				
+				for(contador=0; contador<=i; contador++) {
+					comp=strcmp(usuario[contador].nombre, usuario[i].nombre);
+					if(comp==0) {
+						do {
+							printf("Introduzca su clave para acceder:\n");
+							scanf("%d", usuario[i].clave);
+							for(contador=0;contador<=i; contador++) {
+								if(usuario[i].clave == usuario[contador].clave) {
+									printf("Te damos la bienvenida a Buscador de Hoteles\n");
+									break;
+								}
+								else {
+									printf("Clave incorrecta, por favor intentelo de nuevo.\n");
+									break;
+								}
+							}
+						}
+						while(usuario[i].calve != usuario[contador].clave);
+						break;
+					}
+					
+					else if(comp==1) {
+						printf("Usuario no existente, por favor intentelo de nuevo.\n");
+						break;
+					}
+					
+				}
+			}
+			while(comp==1);
+			fclose(fregistro);
+			break;	
+			
+			
 			printf("--------------------------\n");
 			printf("Que desea hacer?:\n");
 			printf("R--Hacer una reserva\n");
@@ -148,11 +231,3 @@ int main() {
 				printf("La opcion es incorrecta\n");			
 		}
 	} while (opcion != 'S');
-	do{
-		
-		
-	
-	
-	
-	
-}
