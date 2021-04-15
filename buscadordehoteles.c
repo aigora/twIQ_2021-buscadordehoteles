@@ -3,7 +3,15 @@
 struct ususario {
 	char nombre[100];
 	int clave;
-}
+};
+struct reserva {
+	int dia;
+	int mes;
+	char ciudad[100];
+	char pais[100];
+	char hotel[100];
+	float precio;
+};
 
 int main() {
 	char opcion;
