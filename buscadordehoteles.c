@@ -171,7 +171,7 @@ int main() {
 								}
 							}
 						}
-						while(usuario[i].calve != usuario[contador].clave);
+						while(usuario[i].clave != usuario[contador].clave);
 						break;
 					}
 					
