@@ -32,9 +32,9 @@ int main() {
 	scanf("%c", &opcion);
 	
 	switch(opcion) {
-		case 'r':	
+		case 'r':
 		case 'R':
-			fregistro=fopen("Registro.txt","R");
+			fregistro=fopen("Registro.txt","r");
 			
 			if(fregistro == NULL) {
 				printf("No se ha podido abrir el fichero Registro correctamente\n");
@@ -50,7 +50,7 @@ int main() {
 				
 			do{
 				printf("Introduzca el nombre de usuario:\n");
-				scanf("%s",usuario[i].nombre);
+				scanf("%s",usuarios[i].nombre);
 				
 				for(contador=0; contador<i; contador++) {
 					comp=strcmp(usuarios[contador].nombre, usuarios[i].nombre);
@@ -152,14 +152,14 @@ int main() {
 				
 			do{
 				printf("Introduzca el nombre de usuario:\n");
-				scanf("%s",usuario[i].nombre);
+				scanf("%s",usuarios[i].nombre);
 				
 				for(contador=0; contador<=i; contador++) {
 					comp=strcmp(usuarios[contador].nombre, usuarios[i].nombre);
 					if(comp==0) {
 						do {
 							printf("Introduzca su clave para acceder:\n");
-							scanf("%d", usuario[i].clave);
+							scanf("%d", usuarios[i].clave);
 							for(contador=0;contador<=i; contador++) {
 								if(usuarios[i].clave == usuarios[contador].clave) {
 									printf("Te damos la bienvenida a Buscador de Hoteles\n");
