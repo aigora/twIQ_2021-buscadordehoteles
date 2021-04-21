@@ -41,8 +41,8 @@ int main() {
 				return 0;
 			}
 			
-			while(fscanf(fregistro,"%d %s %s %d", &contador+1, usuario[contador].nombre, usuario[contador].clave, &dato) != EOF) {
-				printf("%d %s %s %d", contador+1, usuario[contador].nombre, usuario[contador].clave, dato);
+			while(fscanf(fregistro,"%d %s %s %d", &contador+1, usuarios[contador].nombre, usuarios[contador].clave, &dato) != EOF) {
+				printf("%d %s %s %d", contador+1, usuarios[contador].nombre, usuarios[contador].clave, dato);
 				contador++;
 			}
 			
@@ -53,7 +53,7 @@ int main() {
 				scanf("%s",usuario[i].nombre);
 				
 				for(contador=0; contador<i; contador++) {
-					comp=strcmp(usuario[contador].nombre, usuario[i].nombre);
+					comp=strcmp(usuarios[contador].nombre, usuarios[i].nombre);
 					if(comp==0) {
 						printf("El nombre de usuario introducido ya existe\n");
 						break;
@@ -76,11 +76,11 @@ int main() {
 				return 0;
 			}
 			printf("Introduzca su clave:\n");
-			scanf("%d", &usuario[i].clave);
-			printf("%d %s %d\n", i, usuario[i].nombre, usuario[i].clave);
+			scanf("%d", &usuarios[i].clave);
+			printf("%d %s %d\n", i, usuarios[i].nombre, usuarios[i].clave);
 			for(i=0; i<=contador; i++) {
-				fprintf(fregistro, "%d %s %d\n", i, usuario[i].nombre, usuario[i].clave);
-				printf("%d %s %d\n", i, usuario[i].nombre, usuario[i].clave);
+				fprintf(fregistro, "%d %s %d\n", i, usuarios[i].nombre, usuarios[i].clave);
+				printf("%d %s %d\n", i, usuarios[i].nombre, usuarios[i].clave);
 			}
 			fclose(fregistro);
 			break;			
@@ -143,8 +143,8 @@ int main() {
 			}
 			
 			
-			while(fscanf(fregistro,"%d %s %s %d", &contador+1, usuario[contador].nombre, usuario[contador].clave, &dato) != EOF) {
-				printf("%d %s %s %d", contador+1, usuario[contador].nombre, usuario[contador].clave, dato);
+			while(fscanf(fregistro,"%d %s %s %d", &contador+1, usuarios[contador].nombre, usuarios[contador].clave, &dato) != EOF) {
+				printf("%d %s %s %d", contador+1, usuarios[contador].nombre, usuarios[contador].clave, dato);
 				contador++;
 			}
 			
@@ -155,13 +155,13 @@ int main() {
 				scanf("%s",usuario[i].nombre);
 				
 				for(contador=0; contador<=i; contador++) {
-					comp=strcmp(usuario[contador].nombre, usuario[i].nombre);
+					comp=strcmp(usuarios[contador].nombre, usuarios[i].nombre);
 					if(comp==0) {
 						do {
 							printf("Introduzca su clave para acceder:\n");
 							scanf("%d", usuario[i].clave);
 							for(contador=0;contador<=i; contador++) {
-								if(usuario[i].clave == usuario[contador].clave) {
+								if(usuarios[i].clave == usuarios[contador].clave) {
 									printf("Te damos la bienvenida a Buscador de Hoteles\n");
 									break;
 								}
@@ -171,7 +171,7 @@ int main() {
 								}
 							}
 						}
-						while(usuario[i].clave != usuario[contador].clave);
+						while(usuarios[i].clave != usuarios[contador].clave);
 						break;
 					}
 					
