@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-struct ususario {
+struct usuario {
 	char nombre[100];
 	int clave;
 };
