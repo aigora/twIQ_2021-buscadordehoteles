@@ -18,7 +18,7 @@ int main() {
 	char opcion2;
 	int i, dato, contador=0, comp;
 	FILE * fregistro;
-	struct usuario usuario[100]
+	struct usuario usuarios[100]
 	
 	printf("----------------------\n");
 	printf("\tMenu:\n");
