@@ -32,9 +32,8 @@ int main() {
 	scanf("%c", &opcion);
 	
 	switch(opcion) {
-		case 'r':
 		case 'R':
-			fregistro=fopen("Registro.txt","r");
+			fregistro=fopen("Registro.txt","R");
 			
 			if(fregistro == NULL) {
 				printf("No se ha podido abrir el fichero Registro correctamente\n");
