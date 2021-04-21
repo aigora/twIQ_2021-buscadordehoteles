@@ -32,7 +32,7 @@ int main() {
 	scanf("%c", &opcion);
 	
 	switch(opcion) {
-		case 'r'	
+		case 'r':	
 		case 'R':
 			fregistro=fopen("Registro.txt","R");
 			
