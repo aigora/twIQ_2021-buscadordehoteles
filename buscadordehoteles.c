@@ -238,4 +238,4 @@ int main() {
 			default:
 				printf("La opcion es incorrecta\n");			
 		}
-	} while (opcion != 'S');
+	}
