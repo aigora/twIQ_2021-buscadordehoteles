@@ -19,6 +19,7 @@ int main() {
 	char opcion2;
 	int i, dato, nUsuarios=0, comparador, comparador2;
 	struct usuario usuarios[100];
+	char nombre2;
 	
 	//Leer fichero .txt
 	FILE * pregistro;
@@ -34,9 +35,10 @@ int main() {
 	nUsuarios = i;		
 	fclose(pregistro);
 	
+	//Leer fichero .txt
 	
-	//menu principal
 	
+	//Menu principal
 	printf("----------------------\n");
 	printf("\tMenu:\n");
 	printf("R--Registrarse\n");
@@ -51,7 +53,6 @@ int main() {
 	switch(opcion) {
 		case 'r':
 		case 'R':
-		
 			//Registro de nuevo usuario
 			i=nUsuarios+1;
 			
@@ -87,7 +88,6 @@ int main() {
 			
 		case 'i':
 		case 'I':
-			
 			//Inicio de sesión
 			i=nUsuarios+1;
 				
@@ -116,7 +116,7 @@ int main() {
 							}
 						} while(comparador2!=0);
 						
-						break;
+					
 					} else if(comparador==1) {
 						printf("Usuario no existente, por favor intentelo de nuevo.\n");
 						break;
