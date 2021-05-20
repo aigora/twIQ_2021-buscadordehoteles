@@ -1,0 +1,36 @@
+1 Espannya Madrid NH_Hotels 74.00
+2 Espannya Madrid Four_Seasons 105.30
+3 Espannya Madrid Airbnb 53.00
+4 Espannya Barcelona Hotel_Vela 64.00
+5 Espannya Barcelona Airbnb 42.90
+6 Espannya Barcelona El Palace 76.30
+7 Francia Paris Airbnb 64.35
+8 Francia Paris Elysees 76.96
+9 Francia Paris Novotel 68.76
+10 Francia Lyon Airbnb 46.52
+11 Francia Lyon Fourviere 52.13
+12 Francia Lyon Lagrange 41.26
+13 Italia Roma Airbnb 47.23
+14 Italia Roma NH 34.56
+15 Italia Roma Melia 64.23
+16 Italia Venecia Ibis 53.21
+17 Italia Venecia Hilton 60.20
+18 Italia Venecia Airbnb 52.03
+19 Inglaterra Londres Premier_Inn 69.05
+20 Inglaterra Londres Ibis 42.06
+21 Inglaterra Londres Airbnb 46.05
+22 Inglaterra Bath NH 50.23
+23 Inglaterra Bath Airbnb 32.75
+24 Inglaterra Bath Holiday_Inn 42.35
+25 Alemania Berlín Radisson Blu Hotel 50.00
+26 Alemania Berlín Nook 42.30
+27 Alemania Berlín Melia 46.78
+28 Alemania Múnich NH 38.20
+29 Alemania Múnich Airbnb 32.45
+30 Alemania Múnich Amba 46.80
+31 Portugal Lisboa Airbnb 40.30
+32 Portugal Lisboa NH 32.60
+33 Portugal Lisboa Luxury 60.13
+34 Portugal Oporto Avid 60.00
+35 Portugal Oporto Airbnb 43.20
+36 Portugal Oporto Melia 52.23
