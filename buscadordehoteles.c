@@ -1,27 +1,36 @@
 #include <stdio.h>
 #include <string.h>
+void pancarta();
+int menuPrincipal();
+int menuSecundario();
 struct usuario {
 	char nombre[100];
 	char clave[10];
 };
 struct reserva {
-	int dia;
-	int mes;
+	int numHotel;
+	int numReserva;
+	int dia_llegada;
+	int dia_salida;
+	int mes_llegada;
+	int mes_salida;
 	char ciudad[100];
 	char pais[100];
 	char hotel[100];
 	float precio;
+	int num_dias;
 };
 
 //Menu del trabajo:
 int main() {
 	char opcion;
 	char opcion2;
-	int i, dato, nUsuarios=0, comparador, comparador2;
-	struct usuario usuarios[100];
+	int i, j, dato, nUsuarios=0, nHoteles=0, comparador, comparador2;
+	struct usuario usuarios[1000];
+	struct reserva hoteles[5000];
 	char nombre2;
 	
-	//Leer fichero .txt
+	//Leer fichero Registro.txt
 	FILE * pregistro;
 	pregistro=fopen("Registro.txt","r");
 	if(pregistro == NULL) {
@@ -29,7 +38,6 @@ int main() {
 		return 0;
 	}
 	while(fscanf(pregistro,"%s %s", usuarios[nUsuarios].nombre, usuarios[nUsuarios].clave) != EOF) {
-		//printf("%s %d", usuarios[contador].nombre, usuarios[contador].clave);
 		nUsuarios++;
 	}	
 	nUsuarios = i;		
@@ -38,13 +46,11 @@ int main() {
 	//Leer fichero .txt
 	
 	
+	//Pancarta
+	pancarta();
+	
 	//Menu principal
-	printf("----------------------\n");
-	printf("\tMenu:\n");
-	printf("R--Registrarse\n");
-	printf("I--Iniciar sesion\n");
-	printf("S--Salir del programa\n");
-	printf("----------------------\n");
+	menuPrincipal();
 	
 	printf("Introduzca la opcion: \n");
 	fflush(stdin);
@@ -146,17 +152,9 @@ int main() {
 			}
     		fclose(pregistro);
     		fflush(stdin);
-	printf("--------------------------\n");
-	printf("Que desea hacer?:\n");
-	printf("R--Hacer una reserva\n");
-	printf("H--Buscar hoteles\n");
-	printf("B--Borrar reserva\n");
-	printf("C--Consultar Reserva\n");
-	printf("A--Seccion de comentarios\n");
-	printf("S--Salir del programa\n");
-	printf("--------------------------\n");
-	
-	
+    		
+    //Menu secundario:
+	menuSecundario();
 		
 	do{
 		printf("Introduzca la opcion: \n");
@@ -190,7 +188,33 @@ int main() {
 			default:
 				printf("La opcion es incorrecta\n");			
 			}
+	
 	} while (opcion2 != 'S');
+}
 	
+void pancarta(){
+	printf("\t\t\t----------------------------------------------------------------------\n");
+	printf("\t\t\t\t\t| Bienvenido al buscador de hoteles: |\n");
+	printf("\t\t\t-----------------------------------------------------------------------\n");
+}
+
+int menuPrincipal(){
+	printf("----------------------\n");
+	printf("\tMenu:\n");
+	printf("R--Registrarse\n");
+	printf("I--Iniciar sesion\n");
+	printf("S--Salir del programa\n");
+	printf("----------------------\n");
+}
 	
-	}
+int menuSecundario(){
+	printf("--------------------------\n");
+	printf("Que desea hacer?:\n");
+	printf("R--Hacer una reserva\n");
+	printf("H--Buscar hoteles\n");
+	printf("B--Borrar reserva\n");
+	printf("C--Consultar Reserva\n");
+	printf("A--Seccion de comentarios\n");
+	printf("S--Salir del programa\n");
+	printf("--------------------------\n");
+}
