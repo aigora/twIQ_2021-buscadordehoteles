@@ -3,7 +3,7 @@
 3 Espannya Madrid Airbnb 53.00
 4 Espannya Barcelona Hotel_Vela 64.00
 5 Espannya Barcelona Airbnb 42.90
-6 Espannya Barcelona El Palace 76.30
+6 Espannya Barcelona El_Palace 76.30
 7 Francia Paris Airbnb 64.35
 8 Francia Paris Elysees 76.96
 9 Francia Paris Novotel 68.76
