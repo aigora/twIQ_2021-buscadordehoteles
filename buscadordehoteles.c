@@ -94,7 +94,7 @@ int main() {
 			
 		case 'i':
 		case 'I':
-			//Inicio de sesión
+			//Inicio de sesiÃ³n
 			i=nUsuarios+1;
 				
 			do{
@@ -107,7 +107,7 @@ int main() {
 					comparador=strcmp(usuarios[nUsuarios].nombre, usuarios[i].nombre);
 					if(comparador==0) {
 						do {
-							//Comprobamos que la contraseña sea correcta
+							//Comprobamos que la contraseÃ±a sea correcta
 							printf("Introduzca su clave para acceder:\n");
 							scanf("%s", usuarios[i].clave);
 							for(nUsuarios=0;nUsuarios<i; nUsuarios++) {
@@ -142,7 +142,7 @@ int main() {
 			return 0;			
 		}
 	//Guardar la memoria en el .txt
-    		pregistro = fopen("Registro.txt", "w"); 
+    		pregistro = fopen("Registro.txt", "a"); 
     		if(pregistro==NULL) {
 				printf("No se ha podido abrir el fichero Registro correctamente\n");
 				return 0;
