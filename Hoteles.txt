@@ -22,7 +22,7 @@
 22 Inglaterra Bath NH 50.23
 23 Inglaterra Bath Airbnb 32.75
 24 Inglaterra Bath Holiday_Inn 42.35
-25 Alemania Berlín Radisson Blu Hotel 50.00
+25 Alemania Berlín Radisson_Blu_Hotel 50.00
 26 Alemania Berlín Nook 42.30
 27 Alemania Berlín Melia 46.78
 28 Alemania Múnich NH 38.20
