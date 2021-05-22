@@ -46,6 +46,19 @@ int main() {
 	//Leer fichero .txt
 	
 	
+	//Leer fichero Comentarios.txt
+	FILE * fentrada;
+	fentrada = fopen("Comentarios.txt", "r");
+	if (fentrada == NULL) {
+		printf("No se ha podido abrir el fichero Comentarios correctamente\n");
+		return 0;
+	}
+			
+	while (fscanf(fentrada, "%s", comentarios[nComentarios].mensaje) != EOF) {
+		nComentarios++;
+	} 
+	fclose(fentrada);
+	
 	//Pancarta
 	pancarta();
 	
@@ -209,15 +222,42 @@ int main() {
 				break;
 			case 'a':
 			case 'A':
-				printf("Seccion de comentarios\n");
+				printf("Ha seleccionado la opcion: 'Seccion de comentarios'\n");
+				printf("Si desea leer comentarios pulse 1\n");
+				printf("Si desea escribir un comentario pulse 2\n");
+				scanf("%d", &opcion3);
+				switch(opcion3) {
+					case 1:
+						for (i = 0; i < nComentarios; i++) {
+								printf("%s", comentarios[i].mensaje);
+								printf("\n");
+						}
+						break;
+					case 2:
+						printf("Escriba su comentario, para ello ponga una barra baja (_) entre las palabras (donde deberia ir el espacio):\n");
+						scanf("%s", &comentarios[nComentarios].mensaje);
+				}
 				break;			
 			case 's':
 			case 'S':
+				//Salir del programa
 				printf("Gracias por utilizar este programa\n");
 				return 0;
 			default:
 				printf("La opcion es incorrecta\n");			
 			}
+			
+			//Guardar la memoria en Comentarios.txt
+			fentrada = fopen("Comentarios.txt", "a");
+			if (fentrada == NULL) {
+				printf("No se ha podido abrir el fichero Comentarios correctamente\n");
+				return 0;
+			}	
+			for (nComentarios=0; nComentarios<i; nComentarios++) {
+				fprintf(fentrada, "%s\n", comentarios[i].mensaje);
+			}	
+			fclose(fentrada);
+			fflush(stdin);
 	
 	} while (opcion2 != 'S');
 }
