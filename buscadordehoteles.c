@@ -164,6 +164,36 @@ int main() {
 			case 'r':
 			case 'R':
 				printf("Hacer una reserva\n");
+					i=nUsuarios+1;
+					
+					//Comprobamos que el usuario exista:
+					do{
+					printf("Introduzca el nombre de usuario:\n");
+					scanf("%s",usuarios[i].nombre);
+					fflush(stdin);
+					
+					for(nUsuarios==0; nUsuarios<i; nUsuarios++) {
+					comparador=strcmp(usuarios[nUsuarios].nombre, usuarios[i].nombre);
+					if(comparador==0) {
+						printf("Se ha confirmado su usuario\n");
+						break;
+					} else if(comparador!=0) {
+						printf("El nombre de usuario no existe\n");
+						break;
+					}
+				}
+				}while(comparador!=0);
+				
+				if (comparador!= 0) {
+					strcpy(usuarios[nUsuarios].nombre, usuarios[i].nombre);
+			}
+			fflush(stdin);
+			
+			//Nombre
+			printf("A nombre de quien desea hacer la reserva:\n");
+			scanf("%s", &usuarios[i].nombreReserva);
+			
+			printf("Se ha hecho la reserva correctamente\n");
 				break;
 			case 'h':
 			case 'H':
