@@ -20,6 +20,9 @@ struct reserva {
 	float precio;
 	int num_dias;
 };
+struct comentario {
+	char mensaje[200];
+};
 
 //Menu del trabajo:
 int main() {
