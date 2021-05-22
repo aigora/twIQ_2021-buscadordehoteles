@@ -163,7 +163,7 @@ int main() {
 		switch(opcion2) {
 			case 'r':
 			case 'R':
-				printf("Hacer una reserva\n");
+				printf("Ha seleccionado: hacer una reserva\n");
 					i=nUsuarios+1;
 					
 					//Comprobamos que el usuario exista:
