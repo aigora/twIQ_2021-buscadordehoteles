@@ -26,12 +26,13 @@ struct comentario {
 
 //Menu del trabajo:
 int main() {
-	char opcion;
-	char opcion2;
-	int i, j, dato, nUsuarios=0, nHoteles=0, comparador, comparador2;
+	char opcion, opcion2;
+	int opcion3;
+	int i, j, dato, nUsuarios=0, nComentarios=0, nHoteles=0, comparador, comparador2;
 	struct usuario usuarios[1000];
 	struct reserva hoteles[5000];
-	char nombre2;
+	struct comentario comentarios[5000];
+
 	
 	//Leer fichero Registro.txt
 	FILE * pregistro;
