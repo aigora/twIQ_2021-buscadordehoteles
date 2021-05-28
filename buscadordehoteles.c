@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <iostream>
 #include <string.h>
 void pancarta();
 int menuPrincipal();
@@ -196,6 +197,7 @@ int main() {
 			
 		case 's':
 		case 'S':
+			//Salimos del programa
 			printf("Gracias por utilizar este programa\n");
 			return 0;
 		default:
@@ -224,6 +226,7 @@ int main() {
 		switch(opcion2) {
 			case 'r':
 			case 'R':
+				//Hacemos una reserva
 				printf("Ha seleccionado: hacer una reserva\n");
 				i=nUsuarios+1;
 					
@@ -259,6 +262,7 @@ int main() {
 			
 			case 'h':
 			case 'H':
+				//Buscamos un hotel
 				printf("Ha seleccionado: Buscar hoteles\n");
 				do {
 					menuPaises();
@@ -267,6 +271,7 @@ int main() {
 					scanf("%c", &opcion3);
 					switch(opcion3) {
 						case '1':
+							//Pais
 							printf("Ha elegido Espannya como lugar de destino\n");
 							do {
 								menuCiudadesEspannya();
@@ -275,6 +280,7 @@ int main() {
 								scanf("%c", &opcion4);
 								switch(opcion4) {
 									case '1': 
+									//Ciudad
 										printf("Ha elegido Madrid como lugar de destino\n");
 										do {
 											menuPreciosMadrid();
@@ -283,19 +289,43 @@ int main() {
 											scanf("%c", &opcion5);
 											switch(opcion5) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
-													//Hay que aÃ±adir scanf para mes, dia y hora de ida he igual de salida
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+												    printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										} while(opcion5<1 || opcion5>3);
 									    break;
 									case '2': 
+									//Ciudad
 										printf("Ha elegido Barcelona como lugar de destino\n");
 										do {
 											menuPreciosBarcelona();
@@ -304,13 +334,37 @@ int main() {
 											scanf("%c", &opcion6);
 											switch(opcion6) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+											        printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										} while(opcion6<1 || opcion6>3);
@@ -319,6 +373,7 @@ int main() {
 							} while(opcion4<1 || opcion4>2);
 							break;
 						case '2':
+							//Pais
 							printf("Ha elegido Francia como lugar de destino\n");
 							do {
 								menuCiudadesFrancia();
@@ -327,6 +382,7 @@ int main() {
 								scanf("%c", &opcion7);
 								switch(opcion7) {
 									case '1': 
+									//Ciudad
 										printf("Ha elegido ParÃ­s como lugar de destino\n");
 										do {
 											menuPreciosParis();
@@ -335,18 +391,43 @@ int main() {
 											scanf("%c", &opcion8);
 											switch(opcion8) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										} while(opcion8<1 || opcion8>3);
 									    break;
 									case '2': 
+									//Ciudad
 										printf("Ha elegido Lyon como lugar de destino\n");
 										do {
 											menuPreciosLyon();
@@ -355,13 +436,37 @@ int main() {
 											scanf("%c", &opcion9);
 											switch(opcion9) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										} while(opcion9<1 || opcion9>3);
@@ -370,6 +475,7 @@ int main() {
 							}  while(opcion7<1 || opcion7>2);
 							break;
 						case '3':
+							//Pais
 							printf("Ha elegido Italia como lugar de destino\n");
 							do {
 								menuCiudadesItalia();
@@ -378,6 +484,7 @@ int main() {
 								scanf("%c", &opcion10);
 								switch(opcion10) {
 									case '1': 
+									//Ciudad
 										printf("Ha elegido Roma como lugar de destino\n");
 										do {
 											menuPreciosRoma();
@@ -386,18 +493,43 @@ int main() {
 											scanf("%c", &opcion11);
 											switch(opcion11) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										}while(opcion11<1 || opcion11>3);
 									    break;
 									case '2': 
+									//Ciudad
 										printf("Ha elegido Venecia como lugar de destino\n");
 										do {
 											menuPreciosVenecia();
@@ -406,13 +538,37 @@ int main() {
 											scanf("%c", &opcion12);
 											switch(opcion12) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										}while(opcion12<1 || opcion12>3);
@@ -421,6 +577,7 @@ int main() {
 					        }while(opcion10<1 || opcion10>2);
 							break;
 						case '4':
+							//Pais
 							printf("Ha elegido Inglaterra como lugar de destino\n");
 							do {
 								menuCiudadesInglaterra();
@@ -429,6 +586,7 @@ int main() {
 								scanf("%c", &opcion13);
 								switch(opcion13) {
 									case '1': 
+									//Ciudad
 										printf("Ha elegido Londres como lugar de destino\n");
 										do {
 											menuPreciosLondres();
@@ -437,18 +595,43 @@ int main() {
 											scanf("%c", &opcion14);
 											switch(opcion14) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										}while(opcion14<1 || opcion14>3);
 									    break;
 									case '2': 
+									//Ciudad
 										printf("Ha elegido Bath como lugar de destino\n");
 										do {
 											menuPreciosBath();
@@ -457,13 +640,37 @@ int main() {
 											scanf("%c", &opcion15);
 											switch(opcion15) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										}while(opcion15<1 || opcion15>3);
@@ -472,6 +679,7 @@ int main() {
 							}while(opcion13<1 || opcion13>2);
 							break;
 						case '5':
+							//Pais
 							printf("Ha elegido Alemania como lugar de destino\n");
 							do {
 								menuCiudadesAlemania();
@@ -480,7 +688,8 @@ int main() {
 								scanf("%c", &opcion16);
 								switch(opcion16) {
 									case '1': 
-										printf("Ha elegido BerlÃ­n como lugar de destino\n");
+									//Ciudad
+										printf("Ha elegido Berlin como lugar de destino\n");
 										do {
 											menuPreciosBerlin();
 											printf("Introduzca la opcion: \n");
@@ -488,19 +697,44 @@ int main() {
 											scanf("%c", &opcion17);
 											switch(opcion17) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										}while(opcion17<1 || opcion17>3);
 									    break;
 									case '2': 
-										printf("Ha elegido MÃºnich como lugar de destino\n");
+									//Ciudad
+										printf("Ha elegido Munich como lugar de destino\n");
 										do {
 											menuPreciosMunich();
 											printf("Introduzca la opcion: \n");
@@ -508,13 +742,37 @@ int main() {
 											scanf("%c", &opcion18);
 											switch(opcion18) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										}while(opcion18<1 || opcion18>3);
@@ -523,6 +781,7 @@ int main() {
 							}while(opcion16<1 || opcion16>2);
 							break;
 						case '6':
+							//Pais
 							printf("Ha elegido Portugal como lugar de destino\n");
 							do {
 								menuCiudadesPortugal();
@@ -531,6 +790,7 @@ int main() {
 								scanf("%c", &opcion19);
 								switch(opcion19) {
 									case '1': 
+									//Ciudad
 										printf("Ha elegido Lisboa como lugar de destino\n");
 										do {
 											menuPreciosLisboa();
@@ -539,18 +799,43 @@ int main() {
 											scanf("%c", &opcion20);
 											switch(opcion20) {
 											    case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+											    //Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 											}
 										}while(opcion20<1 || opcion20>3);
 									    break;
 									case '2': 
+									//Ciudad
 										printf("Ha elegido Oporto como lugar de destino\n");
 										do {
 											menuPreciosOporto();
@@ -559,14 +844,38 @@ int main() {
 											scanf("%c", &opcion21);
 											switch(opcion21) {
 												case '1': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '2': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
 													break;
 												case '3': 
-													printf("Por Ãºltimo ingrese la fecha de ida:\n");
-													break;
+												//Tiempo de estancia
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_llegada);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_llegada);
+													printf("Ingrese el mes de llegada:");
+													("%d", &mes_salida);
+													printf("Ingrese el dia de llegada:");
+													("%d", &dia_salida);
+													break;;
 											}
 										}while(opcion21<1 || opcion21>3);
 										break;
@@ -604,19 +913,17 @@ int main() {
 				for(nReservas=0;nReservas<nHoteles; nReservas++) {
 					if(hoteles[nReservas].numReserva==usuarios[i].numReserva) {
 						comparador3=1;
-						printf("Tu nÃºmero de reserva es\n", usuarios[i].numReserva);
+						printf("Tu numero de reserva es:\n", usuarios[i].numReserva);
 						printf("El pais elegido es:\n", hoteles[nReservas].pais);
 						printf("La ciudad elegida es:\n", hoteles[nReservas].ciudad);
-// rellenar el resto con mes, dia y hora de llegada y salida
-					
-						printf("El pais elegido es:\n", hoteles[nReservas].numReserva);
-						printf("Tu nÃºmero de reserva es\n", hoteles[nReservas].numReserva);
-						printf("El pais elegido es:\n", hoteles[nReservas].numReserva);
-						printf("Tu nÃºmero de reserva es\n", hoteles[nReservas].numReserva);
-						printf("El pais elegido es:\n", hoteles[nReservas].numReserva);
-						printf("Tu nÃºmero de reserva es\n", hoteles[nReservas].numReserva);
-						printf("El pais elegido es:\n", hoteles[nReservas].numReserva);
-						printf("Tu nÃºmero de reserva es\n", hoteles[nReservas].numReserva);														
+ 						printf("El precio elegido es:\n", hoteles[nReservas].precio);
+						printf("El mes de llegada es:\n", hoteles[nReservas].mes_llegada);
+						printf("El dia de llegada es:\n", hoteles[nReservas].dia_llegada;
+						printf("El mes de salida es:n", hoteles[nReservas].mes_salida);
+						printf("El dia de salida es:\n", hoteles[nReservas].dia_salida);
+						//Completar
+						printf("El numero de dias total de estancia es:\n", hoteles[nReservas].numReserva);
+						printf("El precio total del viaje es:\n", hoteles[nReservas].numReserva);													
 						break;
 					} 
 				}
@@ -628,6 +935,7 @@ int main() {
 				break;
 			case 'a':
 			case 'A':
+				//Seccion de comentarios
 				printf("Ha seleccionado la opcion: 'Seccion de comentarios'\n");
 				printf("Si desea leer comentarios pulse 1\n");
 				printf("Si desea escribir un comentario pulse 2\n");
@@ -649,6 +957,7 @@ int main() {
 				break;					
 			case 's':
 			case 'S':
+				//Salir del programa
 				printf("Gracias por utilizar este programa\n");		
 				return 0;
 			default:
@@ -769,17 +1078,17 @@ int menuCiudadesPortugal() {
 int menuPreciosMadrid() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--74.00â¬-NH_Hotels\n");
-	printf("2--105.30â¬-Four_Seasons\n");
-	printf("3--53.00â¬-Airbnb\n");
+	printf("1--74.00-NH_Hotels\n");
+	printf("2--105.30-Four_Seasons\n");
+	printf("3--53.00-Airbnb\n");
 	printf("-------------------------------------------------------\n");
 }
 
 int menuPreciosBarcelona() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--64.00â¬-Hotel_Vela\n");
-	printf("2--42.90â¬-Airbnb\n");
+	printf("1--64.00-Hotel_Vela\n");
+	printf("2--42.90-Airbnb\n");
 	printf("3--76.30-El_Palace\n");
 	printf("-------------------------------------------------------\n");
 }
@@ -787,88 +1096,88 @@ int menuPreciosBarcelona() {
 int menuPreciosParis() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--64.35â¬-Airbnb\n");
-	printf("2--76.96â¬-Elysees\n");
-	printf("3--68.73â¬-Novotel\n");
+	printf("1--64.35-Airbnb\n");
+	printf("2--76.96-Elysees\n");
+	printf("3--68.73-Novotel\n");
 	printf("-------------------------------------------------------\n");
 }
 
 int menuPreciosLyon() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--46.52â¬-Airbnb\n");
-	printf("2--52.13â¬-Fourviere\n");
-	printf("3--41.23â¬-Lagrange\n");
+	printf("1--46.52-Airbnb\n");
+	printf("2--52.13-Fourviere\n");
+	printf("3--41.23-Lagrange\n");
 	printf("-------------------------------------------------------\n");
 }
 
 int menuPreciosRoma() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--47.23â¬-Airbnb\n");
-	printf("2--34.56â¬-NH\n");
-	printf("3--64.23â¬-Melia\n");
+	printf("1--47.23-Airbnb\n");
+	printf("2--34.56-NH\n");
+	printf("3--64.23-Melia\n");
 	printf("-------------------------------------------------------\n");
 }
 
 int menuPreciosVenecia() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--53.21â¬-Ibis\n");
-	printf("2--60.20â¬-Hilton\n");
-	printf("3--52.03â¬-Airbnb\n");
+	printf("1--53.21-Ibis\n");
+	printf("2--60.20-Hilton\n");
+	printf("3--52.03-Airbnb\n");
 	printf("-------------------------------------------------------\n");
 }
 
 int menuPreciosLondres() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--69.05â¬-Premier_Inn\n");
-	printf("2--42.06â¬-Ibis\n");
-	printf("3--46.05â¬-Airbnb\n");
+	printf("1--69.05-Premier_Inn\n");
+	printf("2--42.06-Ibis\n");
+	printf("3--46.05-Airbnb\n");
 	printf("-------------------------------------------------------\n");
 }
 int menuPreciosBath() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--50.23â¬-NH\n");
-	printf("2--32.75â¬-Airbnb\n");
-	printf("3--42.35â¬-Holiday_Inn\n");
+	printf("1--50.23-NH\n");
+	printf("2--32.75-Airbnb\n");
+	printf("3--42.35-Holiday_Inn\n");
 	printf("-------------------------------------------------------\n");
 }
 
 int menuPreciosBerlin() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--50.00â¬-Radisson_Blu_Hotel\n");
-	printf("2--42.30â¬-Nook\n");
-	printf("3--46.78â¬-Melia\n");
+	printf("1--50.00-Radisson_Blu_Hotel\n");
+	printf("2--42.30-Nook\n");
+	printf("3--46.78-Melia\n");
 	printf("-------------------------------------------------------\n");
 }
 
 int menuPreciosMunich() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--38.20â¬-NH\n");
-	printf("2--32.45â¬-Airbnb\n");
-	printf("3--46.80â¬-Amba\n");
+	printf("1--38.20-NH\n");
+	printf("2--32.45-Airbnb\n");
+	printf("3--46.80-Amba\n");
 	printf("-------------------------------------------------------\n");
 }
 
 int menuPreciosLisboa() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--40.30â¬-Airbnb\n");
-	printf("2--32.60â¬-NH\n");
-	printf("3--60.13â¬-Luxury\n");
+	printf("1--40.30-Airbnb\n");
+	printf("2--32.60-NH\n");
+	printf("3--60.13-Luxury\n");
 	printf("-------------------------------------------------------\n");
 }
 
 int menuPreciosOporto() {
 	printf("-------------------------------------------------------\n");
 	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--60.00â¬-Avid\n");
-	printf("2--43.20â¬-Airbnb\n");
-	printf("3--52.23â¬-Melia\n");
+	printf("1--60.00-Avid\n");
+	printf("2--43.20-Airbnb\n");
+	printf("3--52.23-Melia\n");
 	printf("-------------------------------------------------------\n");
 }
