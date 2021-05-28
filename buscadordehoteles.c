@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <iostream>
 #include <string.h>
 void pancarta();
 int menuPrincipal();
@@ -24,88 +23,58 @@ int menuPreciosMunich();
 int menuPreciosLisboa();
 int menuPreciosOporto();
 
+
 struct usuario {
 	char nombre[100];
 	char clave[10];
-	char nombreReserva[100];
-	int numReserva;
 };
-
 struct reserva {
-	int numHotel;
-	int numReserva;
 	int dia_llegada;
 	int dia_salida;
 	int mes_llegada;
 	int mes_salida;
-	char ciudad[100];
-	char pais[100];
-	char hotel[100];
-	float precio;
-	int num_dias;
+	int numReferencia;
+	char nombreReserva[100];
+	
 };
-
+struct hotel {
+	int numHotel;
+	char pais[100];	
+	char ciudad[100];
+	char hotel[100];	
+	float precio;
+};
 struct comentario {
 	char mensaje[200];
 };
 
+int datosUsuarios(struct usuario usuarios[]);
+int seccionComentarios(struct comentario comentarios[]);
+int datosReservas(struct reserva reservas[]);
+//int datosHoteles(struct hotel hoteles[]);
+
 //Menu del trabajo:
 int main() {
-	char mensaje[200];
-	char opcion, opcion2, opcion3, opcion4, opcion5, opcion6, opcion7, opcion8, opcion9, opcion10, opcion11, opcion12, opcion13, opcion14, opcion15, opcion16, opcion17, opcion18, opcion19, opcion20, opcion21;
-	int i, j, opcionComentario, dato, nUsuarios=0, nReservas=0, nHoteles=0, nComentarios=0, comparador, comparador2, comparador3, comparador4, comparador5;
-	struct usuario usuarios[1000];
-	struct reserva hoteles[5000];
+	char opcion, opcion2;
+	int opcionComentarios;
+	int opcion3, opcion4, opcion5, opcion6, opcion7, opcion8, opcion9;
+	int i, r, h, j=0, k, dato, nUsuarios, nComentarios=0, nReservas=0, nHoteles, comparador, comparador2;
+	struct usuario usuarios[100];
 	struct comentario comentarios[5000];
+	struct reserva reservas[1000];
+	struct hotel hoteles[1000];
 	
 	//Leer fichero Registro.txt
-	FILE * pregistro;
-	pregistro=fopen("Registro.txt","r");
-	if(pregistro == NULL) {
-		printf("No se ha podido abrir el fichero Registro correctamente\n");
-		return 0;
-	}
-	while(fscanf(pregistro,"%s %s", usuarios[nUsuarios].nombre, usuarios[nUsuarios].clave) != EOF) {
-		nUsuarios++;
-	}	
-	nUsuarios = i;		
-	fclose(pregistro);
-	
-	// Lectura del fichero Hoteles.txt
-	FILE * fhoteles;
-	fhoteles = fopen("Hoteles.txt", "r");
-	if (fhoteles == NULL) {
-		printf("No se ha podido abrir el fichero Hoteles correctamente\n");
-		return 0;
-	}		
-	while (fscanf(fhoteles, "%d %c %c %c %f", &hoteles[nHoteles].numHotel, hoteles[nHoteles].pais, hoteles[nHoteles].ciudad, hoteles[nHoteles].hotel, &hoteles[nHoteles].precio) != EOF) {
-		nHoteles++;
-	} 
-	fclose(fhoteles);
+	nUsuarios = datosUsuarios(usuarios);
 	
 	//Leer fichero Comentarios.txt
-	FILE * fentrada;
-	fentrada = fopen("Comentarios.txt", "r");
-	if (fentrada == NULL) {
-		printf("No se ha podido abrir el fichero Comentarios correctamente\n");
-		return 0;
-	}	
-	while (fscanf(fentrada, "%s", comentarios[nComentarios].mensaje) != EOF) {
-		nComentarios++;
-	} 
-	fclose(fentrada);
+	nComentarios = seccionComentarios(comentarios);
 	
 	//Leer fichero Reserva.txt
-	FILE*freserva;
-	freserva = fopen("Reserva.txt", "r");
-	if (freserva == NULL) {
-		printf("No se ha podido abrir el fichero Reserva correctamente\n");
-		return 0;
-	}
-	while (fscanf(freserva, "%d %d %d %d %d %d", &hoteles[nHoteles].numReserva, &hoteles[nHoteles].mes_llegada, &hoteles[nHoteles].dia_llegada, &hoteles[nHoteles].mes_salida, &hoteles[nHoteles].dia_salida, &hoteles[nHoteles].numHotel) != EOF) {
-		nReservas++;
-	}
-	fclose(freserva);
+	nReservas = datosReservas(reservas);
+	
+	//Leer fichero Hoteles.txt
+//	nHoteles = datosHoteles(hoteles);
 	
 	
 	//Pancarta
@@ -117,6 +86,7 @@ int main() {
 	printf("Introduzca la opcion: \n");
 	fflush(stdin);
 	scanf("%c", &opcion);
+	
 	
 	switch(opcion) {
 		case 'r':
@@ -137,9 +107,11 @@ int main() {
 						break;
 					} else if(comparador!=0) {
 						printf("Se ha registrado el nombre introducido\n");
+						
 						break;
 					}
 				}
+				//nUsuarios++;
 			}while(comparador==0);
 			
 			if (comparador== 0) {
@@ -156,24 +128,24 @@ int main() {
 			
 		case 'i':
 		case 'I':
-			//Inicio de sesión
-			i=nUsuarios+1;
+			//Inicio de sesi�n
+			j=nUsuarios+1;
 				
 			do{
 				//Comprobamos que el usuario exista:
 				printf("Introduzca el nombre de usuario:\n");
-				scanf("%s",usuarios[i].nombre);
+				scanf("%s",usuarios[j].nombre);
 				fflush(stdin);
 				
-				for(nUsuarios=0; nUsuarios<i; nUsuarios++) {
-					comparador=strcmp(usuarios[nUsuarios].nombre, usuarios[i].nombre);
+				for(nUsuarios=0; nUsuarios<j; nUsuarios++) {
+					comparador=strcmp(usuarios[nUsuarios].nombre, usuarios[j].nombre);
 					if(comparador==0) {
 						do {
-							//Comprobamos que la clave sea correcta
+							//Comprobamos que la contrase�a sea correcta
 							printf("Introduzca su clave para acceder:\n");
-							scanf("%s", usuarios[i].clave);
-							for(nUsuarios=0;nUsuarios<i; nUsuarios++) {
-								comparador2=strcmp(usuarios[nUsuarios].clave, usuarios[i].clave);
+							scanf("%s", usuarios[j].clave);
+							for(nUsuarios=0;nUsuarios<j; nUsuarios++) {
+								comparador2=strcmp(usuarios[nUsuarios].clave, usuarios[j].clave);
 								if(comparador2==0) {
 									printf("Te damos la bienvenida a Buscador de Hoteles\n");
 									break;
@@ -184,8 +156,8 @@ int main() {
 							}
 						} while(comparador2!=0);
 						
-					
-					} else if(comparador==1) {
+						break;
+					} else if(comparador!=0) {
 						printf("Usuario no existente, por favor intentelo de nuevo.\n");
 						break;
 					}
@@ -197,14 +169,14 @@ int main() {
 			
 		case 's':
 		case 'S':
-			//Salimos del programa
 			printf("Gracias por utilizar este programa\n");
 			return 0;
 		default:
 			printf("La opcion es incorrecta\n");
 			return 0;			
-		}
+	}
 	//Guardar la memoria en el .txt
+			FILE * pregistro;
     		pregistro = fopen("Registro.txt", "a"); 
     		if(pregistro==NULL) {
 				printf("No se ha podido abrir el fichero Registro correctamente\n");
@@ -215,735 +187,195 @@ int main() {
 			}
     		fclose(pregistro);
     		fflush(stdin);
-    		
-    //Menu secundario:
-	menuSecundario();
-		
+	//Menu secundario:
 	do{
+		menuSecundario();
 		printf("Introduzca la opcion: \n");
 		fflush(stdin);
 		scanf("%c", &opcion2);
 		switch(opcion2) {
 			case 'r':
 			case 'R':
-				//Hacemos una reserva
 				printf("Ha seleccionado: hacer una reserva\n");
-				i=nUsuarios+1;
-					
-				do{
-					printf("Introduzca el nombre de usuario:\n");
-					scanf("%s",usuarios[i].nombre);
-					fflush(stdin);
-					
-					for(nUsuarios==0; nUsuarios<i; nUsuarios++) {
-					comparador=strcmp(usuarios[nUsuarios].nombre, usuarios[i].nombre);
-						if(comparador==1) {
-							printf("Se ha confirmado su usuario\n");
+				
+				//Numero de referencia del hotel
+				printf("Introduzca el numero de referencia del hotel, si no lo sabe, reinicie el programa y seleccione la opcion 'Buscar hoteles'\n");
+				scanf("%d", &reservas[nReservas].numReferencia);
+			
+	            
+				do {
+					//Nombre	
+					printf("A nombre de quien desea hacer la reserva:\n");
+					scanf("%s", &reservas[nReservas].nombreReserva);
+					for (r=0; r<nReservas; r++) {
+						if (strcmp(reservas[nReservas].nombreReserva, reservas[r].nombreReserva)==0) {
+							printf("Ya existe ese nombre, intentelo de nuevo.\n");
 							break;
-						} else if(comparador==0) {
-							printf("El nombre de usuario no existe\n");
+						} else if (strcmp(reservas[nReservas].nombreReserva, reservas[r].nombreReserva)!=0) {
+							printf("Nombre de reserva aceptado, puede continuar.\n");
+							
 							break;
 						}
-					}	
-				}while(comparador!=0);
+					}					
+				} while (strcmp(reservas[nReservas].nombreReserva, reservas[r].nombreReserva)==0);
+				//Fechas
+				printf("Introduzca el dia de llegada:\n");
+				scanf("%d", &reservas[nReservas].dia_llegada);
+				printf("Introduzca el mes de llegada (en numeros):\n");
+				scanf("%d", &reservas[nReservas].mes_llegada);
+				printf("Introduzca el dia de salida:\n");
+				scanf("%d", &reservas[nReservas].dia_salida);
+				printf("Introduzca el mes de salida (en numeros):\n");
+				scanf("%d", &reservas[nReservas].mes_salida);
 				
-				if (comparador!= 0) {
-					strcpy(usuarios[nUsuarios].nombre, usuarios[i].nombre);
-				}
-				fflush(stdin);
-			
-				//Nombre
-	            printf("A nombre de quien desea hacer la reserva:\n");
-				scanf("%s", &usuarios[i].nombreReserva);
-				
-				printf("Se ha hecho la reserva correctamente\n");		
-				
-				break;	
-			
+				printf("Se ha hecho la reserva correctamente\n");	
+				break;
 			case 'h':
 			case 'H':
-				//Buscamos un hotel
 				printf("Ha seleccionado: Buscar hoteles\n");
-				do {
-					menuPaises();
-					printf("Introduzca la opcion: \n");
-					fflush(stdin);
-					scanf("%c", &opcion3);
-					switch(opcion3) {
-						case '1':
-							//Pais
-							printf("Ha elegido Espannya como lugar de destino\n");
-							do {
-								menuCiudadesEspannya();
-								printf("Introduzca la opcion: \n");
-								fflush(stdin);
-								scanf("%c", &opcion4);
-								switch(opcion4) {
-									case '1': 
-									//Ciudad
-										printf("Ha elegido Madrid como lugar de destino\n");
-										do {
-											menuPreciosMadrid();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion5);
-											switch(opcion5) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-												    printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										} while(opcion5<1 || opcion5>3);
-									    break;
-									case '2': 
-									//Ciudad
-										printf("Ha elegido Barcelona como lugar de destino\n");
-										do {
-											menuPreciosBarcelona();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion6);
-											switch(opcion6) {
-												case '1': 
-												//Tiempo de estancia
-											        printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										} while(opcion6<1 || opcion6>3);
-										break;
-								}
-							} while(opcion4<1 || opcion4>2);
-							break;
-						case '2':
-							//Pais
-							printf("Ha elegido Francia como lugar de destino\n");
-							do {
-								menuCiudadesFrancia();
-								printf("Introduzca la opcion: \n");
-								fflush(stdin);
-								scanf("%c", &opcion7);
-								switch(opcion7) {
-									case '1': 
-									//Ciudad
-										printf("Ha elegido ParÃ­s como lugar de destino\n");
-										do {
-											menuPreciosParis();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion8);
-											switch(opcion8) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										} while(opcion8<1 || opcion8>3);
-									    break;
-									case '2': 
-									//Ciudad
-										printf("Ha elegido Lyon como lugar de destino\n");
-										do {
-											menuPreciosLyon();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion9);
-											switch(opcion9) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										} while(opcion9<1 || opcion9>3);
-										break;
-								}
-							}  while(opcion7<1 || opcion7>2);
-							break;
-						case '3':
-							//Pais
-							printf("Ha elegido Italia como lugar de destino\n");
-							do {
-								menuCiudadesItalia();
-								printf("Introduzca la opcion: \n");
-								fflush(stdin);
-								scanf("%c", &opcion10);
-								switch(opcion10) {
-									case '1': 
-									//Ciudad
-										printf("Ha elegido Roma como lugar de destino\n");
-										do {
-											menuPreciosRoma();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion11);
-											switch(opcion11) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										}while(opcion11<1 || opcion11>3);
-									    break;
-									case '2': 
-									//Ciudad
-										printf("Ha elegido Venecia como lugar de destino\n");
-										do {
-											menuPreciosVenecia();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion12);
-											switch(opcion12) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										}while(opcion12<1 || opcion12>3);
-										break;
-								}
-					        }while(opcion10<1 || opcion10>2);
-							break;
-						case '4':
-							//Pais
-							printf("Ha elegido Inglaterra como lugar de destino\n");
-							do {
-								menuCiudadesInglaterra();
-								printf("Introduzca la opcion: \n");
-								fflush(stdin);
-								scanf("%c", &opcion13);
-								switch(opcion13) {
-									case '1': 
-									//Ciudad
-										printf("Ha elegido Londres como lugar de destino\n");
-										do {
-											menuPreciosLondres();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion14);
-											switch(opcion14) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										}while(opcion14<1 || opcion14>3);
-									    break;
-									case '2': 
-									//Ciudad
-										printf("Ha elegido Bath como lugar de destino\n");
-										do {
-											menuPreciosBath();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion15);
-											switch(opcion15) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										}while(opcion15<1 || opcion15>3);
-										break;
-								}
-							}while(opcion13<1 || opcion13>2);
-							break;
-						case '5':
-							//Pais
-							printf("Ha elegido Alemania como lugar de destino\n");
-							do {
-								menuCiudadesAlemania();
-								printf("Introduzca la opcion: \n");
-								fflush(stdin);
-								scanf("%c", &opcion16);
-								switch(opcion16) {
-									case '1': 
-									//Ciudad
-										printf("Ha elegido Berlin como lugar de destino\n");
-										do {
-											menuPreciosBerlin();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion17);
-											switch(opcion17) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										}while(opcion17<1 || opcion17>3);
-									    break;
-									case '2': 
-									//Ciudad
-										printf("Ha elegido Munich como lugar de destino\n");
-										do {
-											menuPreciosMunich();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion18);
-											switch(opcion18) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										}while(opcion18<1 || opcion18>3);
-										break;
-								}
-							}while(opcion16<1 || opcion16>2);
-							break;
-						case '6':
-							//Pais
-							printf("Ha elegido Portugal como lugar de destino\n");
-							do {
-								menuCiudadesPortugal();
-								printf("Introduzca la opcion: \n");
-								fflush(stdin);
-								scanf("%c", &opcion19);
-								switch(opcion19) {
-									case '1': 
-									//Ciudad
-										printf("Ha elegido Lisboa como lugar de destino\n");
-										do {
-											menuPreciosLisboa();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion20);
-											switch(opcion20) {
-											    case '1': 
-											    //Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-											}
-										}while(opcion20<1 || opcion20>3);
-									    break;
-									case '2': 
-									//Ciudad
-										printf("Ha elegido Oporto como lugar de destino\n");
-										do {
-											menuPreciosOporto();
-											printf("Introduzca la opcion: \n");
-											fflush(stdin);
-											scanf("%c", &opcion21);
-											switch(opcion21) {
-												case '1': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '2': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;
-												case '3': 
-												//Tiempo de estancia
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_llegada);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_llegada);
-													printf("Ingrese el mes de llegada:");
-													("%d", &mes_salida);
-													printf("Ingrese el dia de llegada:");
-													("%d", &dia_salida);
-													break;;
-											}
-										}while(opcion21<1 || opcion21>3);
-										break;
-								}
-						    }while(opcion19<1 || opcion19>2);
-							break;
-					}
-				}while(opcion3<1 || opcion3>6);
+				menuPaises();
+				printf("Introduzca la opcion: \n");
+				fflush(stdin);
+				scanf("%c", &opcion3);
+				switch(opcion3) {
+					case '1':
+						printf("Ha elegido Espannya como lugar de destino\n");
+						menuCiudadesEspannya();
+						printf("Introduzca la opcion: \n");
+						fflush(stdin);
+						scanf("%c", &opcion4);
+						switch(opcion4) {
+							case '1': 
+								printf("Ha elegido Madrid como lugar de destino\n");
+								menuPreciosMadrid();
+							    break;
+							case '2': 
+								printf("Ha elegido Barcelona como lugar de destino\n");
+								menuPreciosBarcelona();
+								break;
+						}
+						break;
+					case '2':
+						printf("Ha elegido Francia como lugar de destino\n");
+						menuCiudadesFrancia();
+						printf("Introduzca la opcion: \n");
+						fflush(stdin);
+						scanf("%c", &opcion5);
+						switch(opcion5) {
+							case '1': 
+								printf("Ha elegido París como lugar de destino\n");
+								menuPreciosParis();
+							    break;
+							case '2': 
+								printf("Ha elegido Lyon como lugar de destino\n");
+								menuPreciosLyon();
+								break;
+						}
+						break;
+					case '3':
+						printf("Ha elegido Italia como lugar de destino\n");
+						menuCiudadesItalia();
+						printf("Introduzca la opcion: \n");
+						fflush(stdin);
+						scanf("%c", &opcion6);
+						switch(opcion6) {
+							case '1': 
+								printf("Ha elegido Roma como lugar de destino\n");
+								menuPreciosRoma();
+							    break;
+							case '2': 
+								printf("Ha elegido Venecia como lugar de destino\n");
+								menuPreciosVenecia();
+								break;
+						}
+						break;
+					case '4':
+						printf("Ha elegido Inglaterra como lugar de destino\n");
+						menuCiudadesInglaterra();
+						printf("Introduzca la opcion: \n");
+						fflush(stdin);
+						scanf("%c", &opcion7);
+						switch(opcion7) {
+							case '1': 
+								printf("Ha elegido Londres como lugar de destino\n");
+								menuPreciosLondres();
+							    break;
+							case '2': 
+								printf("Ha elegido Bath como lugar de destino\n");
+								menuPreciosBath();
+								break;
+						}
+						break;
+					case '5':
+						printf("Ha elegido Alemania como lugar de destino\n");
+						menuCiudadesAlemania();
+						printf("Introduzca la opcion: \n");
+						fflush(stdin);
+						scanf("%c", &opcion8);
+						switch(opcion8) {
+							case '1': 
+								printf("Ha elegido Berlín como lugar de destino\n");
+								menuPreciosBerlin();
+							    break;
+							case '2': 
+								printf("Ha elegido Múnich como lugar de destino\n");
+								menuPreciosMunich();
+								break;
+						}
+						break;
+					case '6':
+						printf("Ha elegido Portugal como lugar de destino\n");
+						menuCiudadesPortugal();
+						printf("Introduzca la opcion: \n");
+						fflush(stdin);
+						scanf("%c", &opcion9);
+						switch(opcion9) {
+							case '1': 
+								printf("Ha elegido Lisboa como lugar de destino\n");
+								menuPreciosLisboa();
+							    break;
+							case '2': 
+								printf("Ha elegido Oporto como lugar de destino\n");
+								menuPreciosOporto();
+								break;
+						}
+						break;
+				}
 				break;
 			case 'b':
 			case 'B':
-				printf("Ha seleccionado: Borrar reserva\n");
-				nHoteles = sizeof(hoteles)/sizeof(hoteles[0]);
-					
-				for(nReservas=0;nReservas<nHoteles; nReservas++) {
-					if(hoteles[nReservas].numReserva==usuarios[i].numReserva) {
-						comparador4=1;
-						break;
-					}
-				}
-					
-				if (comparador4 !=0){
-//  borramos el registro/ Falta una linea justo aqui		
-				}else {
-					printf("No se han encontrado reservas a su nombre");	
-				}
-							
+				printf("Borrar reserva\n");
 				break;
 			case 'c':
 			case 'C':
-				printf("Ha seleccionado: Consultar reserva\n");
-				// Obtenemos el numero de registros del array de reservas
-				nHoteles = sizeof(hoteles)/sizeof(hoteles[0]);
-				
-				for(nReservas=0;nReservas<nHoteles; nReservas++) {
-					if(hoteles[nReservas].numReserva==usuarios[i].numReserva) {
-						comparador3=1;
-						printf("Tu numero de reserva es:\n", usuarios[i].numReserva);
-						printf("El pais elegido es:\n", hoteles[nReservas].pais);
-						printf("La ciudad elegida es:\n", hoteles[nReservas].ciudad);
- 						printf("El precio elegido es:\n", hoteles[nReservas].precio);
-						printf("El mes de llegada es:\n", hoteles[nReservas].mes_llegada);
-						printf("El dia de llegada es:\n", hoteles[nReservas].dia_llegada;
-						printf("El mes de salida es:n", hoteles[nReservas].mes_salida);
-						printf("El dia de salida es:\n", hoteles[nReservas].dia_salida);
-						//Completar
-						printf("El numero de dias total de estancia es:\n", hoteles[nReservas].numReserva);
-						printf("El precio total del viaje es:\n", hoteles[nReservas].numReserva);													
-						break;
-					} 
-				}
-				if(comparador3!=0) {
-					printf("No se han encontrado reservas");
-					break;
-				}
+				printf("Ha seleccionado: consultar reserva\n");
+				do {
+					//Nombre	
+					printf("Introduzca el nombre con el que hizo la reserva:\n");
+					scanf("%s", &reservas[nReservas].nombreReserva);
+					for (r=0; r<nReservas; r++) {
+						if (strcmp(reservas[nReservas].nombreReserva, reservas[r].nombreReserva)==0) {
+							printf("El nombre de reserva introducido es correcto.\n");
+							printf("Para el nombre: %s\tFecha de llegada:%d / %d \t Fecha de salida:%d / %d \t Numero de referencia del hotel:%d\n", reservas[r].nombreReserva, reservas[r].dia_llegada, reservas[r].mes_llegada, reservas[r].dia_salida, reservas[r].mes_salida, reservas[r].numReferencia);
+							break;
+						} else if (strcmp(reservas[nReservas].nombreReserva, reservas[r].nombreReserva)!=0) {
+							printf("Nombre de reserva aceptado no existente, intentelo de nuevo.\n");
+							break;
+						}
+					}					
+				} while (strcmp(reservas[nReservas].nombreReserva, reservas[r].nombreReserva)!=0);
 				
 				break;
 			case 'a':
 			case 'A':
-				//Seccion de comentarios
 				printf("Ha seleccionado la opcion: 'Seccion de comentarios'\n");
 				printf("Si desea leer comentarios pulse 1\n");
 				printf("Si desea escribir un comentario pulse 2\n");
-				scanf("%d", &opcionComentario);
-				switch(opcionComentario) {
+				scanf("%d", &opcionComentarios);
+				switch(opcionComentarios) {
 					case 1:
-						for (i = 0; i < nComentarios; i++) {
-								printf("%s", comentarios[i].mensaje);
+						for (k = 0; k < nComentarios; k++) {
+								printf("%s", comentarios[k].mensaje);
 								printf("\n");
 						}
 						break;
@@ -954,38 +386,49 @@ int main() {
 					default:
 						printf("La opcion es incorrecta\n");
 				}
-				break;					
+				break;			
 			case 's':
 			case 'S':
 				//Salir del programa
-				printf("Gracias por utilizar este programa\n");		
+				
+
+				
+				printf("Gracias por utilizar este programa\n");
 				return 0;
 			default:
 				printf("La opcion es incorrecta\n");			
 		}
 			
-			//Guardar la memoria en Comentarios.txt
-			fentrada = fopen("Comentarios.txt", "a");
-			if (fentrada == NULL) {
-				printf("No se ha podido abrir el fichero Comentarios correctamente\n");
-				return 0;
-			}	
-			for (nComentarios=0; nComentarios<i; nComentarios++) {
-				fprintf(fentrada, "%s\n", comentarios[i].mensaje);
-			}	
-			fclose(fentrada);
-			fflush(stdin);
-			
-			//Reescribir el fichero Reserva.txt
-    		FILE * freserva;
-    		freserva = fopen("Hoteles.txt", "w"); 
-    		for (i=0; i<nHoteles; i++) {
-    			fprintf(freserva, "%d %d %d %d %d %d", &hoteles[nHoteles].numReserva, hoteles[nHoteles].mes_llegada, hoteles[nHoteles].dia_llegada, hoteles[nHoteles].mes_salida, hoteles[nHoteles].dia_salida, &hoteles[nHoteles].numHotel);
-			}
-    		fclose(freserva);
-    		return 0;
+		
+
+	} while (opcion2 != 'S' && opcion2 != 's');
 	
-	} while (opcion2 != 'S');
+	//Guardar la memoria en Comentarios.txt
+		FILE * fentrada;
+		fentrada = fopen("Comentarios.txt", "a");
+		if (fentrada == NULL) {
+			printf("No se ha podido abrir el fichero Comentarios correctamente\n");
+			return 0;
+		}	
+		for (nComentarios=0; nComentarios<k; nComentarios++) {
+			fprintf(fentrada, "%s\n", comentarios[k].mensaje);
+		}	
+		fclose(fentrada);
+		fflush(stdin);
+		
+		//Guardar memoria en Reserva.txt
+		FILE * freserva;
+		freserva = fopen("Reserva.txt", "a");
+		if (fentrada == NULL) {
+			printf("No se ha podido abrir el fichero Reserva correctamente\n");
+			return 0;
+		}
+		for (nReservas=0; nReservas<r; nReservas++) {
+			fprintf(freserva,"%s %d %d %d %d %d\n", reservas[r].nombreReserva, &reservas[r].dia_llegada, &reservas[r].mes_llegada, &reservas[r].dia_salida, &reservas[r].mes_salida, &reservas[r].numReferencia);
+		}
+		fclose(freserva);
+		fflush(stdin);
+	
 }
 	
 void pancarta(){
@@ -1014,10 +457,75 @@ int menuSecundario(){
 	printf("S--Salir del programa\n");
 	printf("--------------------------\n");
 }
+int datosUsuarios(struct usuario usuarios[]) {
+	//Leer fichero .txt
+	int nUsuarios = 0, i=0;
+	FILE * pregistro;
+	pregistro = fopen("Registro.txt", "r");
+	if (pregistro == NULL){
+		printf("No se ha podido abrir el fichero Registro correctamente\n");
+		return 0;
+	}
+	while (fscanf(pregistro, "%s %s", usuarios[i].nombre, usuarios[i].clave) != EOF) {
+		//printf("%s %s\n", usuarios[i].nombre, usuarios[i].clave);
+		i++;
+		nUsuarios++;
+	}
+	fclose(pregistro);
+	return nUsuarios;
+}
+int seccionComentarios(struct comentario comentarios[]) {
+	//Leer fichero Comentarios.txt
+	int nComentarios = 0, k=0;
+	FILE * fentrada;
+	fentrada = fopen("Comentarios.txt", "r");
+	if (fentrada == NULL) {
+		printf("No se ha podido abrir el fichero Comentarios correctamente\n");
+		return 0;
+	}	
+	while (fscanf(fentrada, "%s", comentarios[k].mensaje) != EOF) {
+		k++;
+		nComentarios++;
+	} 
+	fclose(fentrada);
+	return nComentarios;
+}
+int datosReservas(struct reserva reservas[]) {
+	//Leer fichero Reserva.txt
+	int nReservas = 0, r=0;
+	FILE * freserva;
+	freserva = fopen("Reserva.txt", "r");
+	if (freserva == NULL) {
+		printf("No se ha podido abrir el fichero Reserva correctamente\n");
+		return 0;
+	}
+	while (fscanf(freserva, "%s %d %d %d %d %d", reservas[r].nombreReserva, &reservas[r].dia_llegada, &reservas[r].mes_llegada, &reservas[r].dia_salida, &reservas[r].mes_salida, &reservas[r].numReferencia) != EOF) {
+		r++;
+		nReservas++;
+	}
+	fclose(freserva);
+	return nReservas;
+}
+/*
+int datosHoteles(struct hotel hoteles[]) {
+	int nHoteles = 0, h=0;
+	FILE * fhoteles;
+	fhoteles = fopen("Reserva.txt", "r");
+	if (fhoteles == NULL) {
+		printf("No se ha podido abrir el fichero Reserva correctamente\n");
+		return 0;
+	}
+	while (fscanf(fhoteles, "%d %s %s %s %f", &hoteles[h].numHotel, hoteles[h].pais, hoteles[h].ciudad, hoteles[h].hotel, &hoteles[h].precio) != EOF) {
+		h++;
+		nHoteles++;
+	}
+	fclose(fhoteles);
+	return nHoteles;
+}*/
 
 int menuPaises() {
 	printf("--------------------------------\n");
-	printf("Seleccione un paÃ­s de destino:\n");
+	printf("Seleccione un país de destino:\n");
 	printf("1--Espannya\n");
 	printf("2--Francia\n");
 	printf("3--Italia\n");
@@ -1038,7 +546,7 @@ int menuCiudadesEspannya() {
 int menuCiudadesFrancia() {
 	printf("----------------------------------------\n");
 	printf("Ahora seleccione una ciudad de destino:\n");
-	printf("1--ParÃ­s\n");
+	printf("1--París\n");
 	printf("2--Lyon\n");
 	printf("----------------------------------------\n");
 }
@@ -1062,8 +570,8 @@ int menuCiudadesInglaterra() {
 int menuCiudadesAlemania() {
 	printf("----------------------------------------\n");
 	printf("Ahora seleccione una ciudad de destino:\n");
-	printf("1--BerlÃ­n\n");
-	printf("2--MÃºnich\n");
+	printf("1--Berlín\n");
+	printf("2--Múnich\n");
 	printf("----------------------------------------\n");
 }
 
@@ -1076,108 +584,120 @@ int menuCiudadesPortugal() {
 }
 
 int menuPreciosMadrid() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--74.00-NH_Hotels\n");
-	printf("2--105.30-Four_Seasons\n");
-	printf("3--53.00-Airbnb\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--74.00 euros/noche\tNH_Hotels\tNumero de referencia:1\n");
+	printf("2--105.30 euros/noche\tFour_Seasons\tNumero de referencia:2\n");
+	printf("3--53.00 euros/noche\tAirbnb\tNumero de referencia:3\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosBarcelona() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--64.00-Hotel_Vela\n");
-	printf("2--42.90-Airbnb\n");
-	printf("3--76.30-El_Palace\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--64.00 euros/noche\tHotel_Vela\tNumero de referencia:4\n");
+	printf("2--42.90 euros/noche\tAirbnb\tNumero de referencia:5\n");
+	printf("3--76.30 euros/noche\tEl_Palace\tNumero de referencia:6\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosParis() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--64.35-Airbnb\n");
-	printf("2--76.96-Elysees\n");
-	printf("3--68.73-Novotel\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--64.35 euros/noche\tAirbnb\tNumero de referencia:7\n");
+	printf("2--76.96 euros/noche\tElysees\tNumero de referencia:8\n");
+	printf("3--68.73 euros/noche\tNovotel\tNumero de referencia:9\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosLyon() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--46.52-Airbnb\n");
-	printf("2--52.13-Fourviere\n");
-	printf("3--41.23-Lagrange\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--46.52 euros/noche\tAirbnb\tNumero de referencia:10\n");
+	printf("2--52.13 euros/noche\tFourviere\tNumero de referencia:11\n");
+	printf("3--41.23 euros/noche\tLagrange\tNumero de referencia:12\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosRoma() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--47.23-Airbnb\n");
-	printf("2--34.56-NH\n");
-	printf("3--64.23-Melia\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--47.23 euros/noche\tAirbnb\tNumero de referencia:13\n");
+	printf("2--34.56 euros/noche\tNH\tNumero de referencia:14\n");
+	printf("3--64.23 euros/noche\tMelia\tNumero de referencia:15\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosVenecia() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--53.21-Ibis\n");
-	printf("2--60.20-Hilton\n");
-	printf("3--52.03-Airbnb\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--53.21 euros/noche\tIbis\tNumero de referencia:16\n");
+	printf("2--60.20 euros/noche\tHilton\tNumero de referencia:17\n");
+	printf("3--52.03 euros/noche\tAirbnb\tNumero de referencia:18\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosLondres() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--69.05-Premier_Inn\n");
-	printf("2--42.06-Ibis\n");
-	printf("3--46.05-Airbnb\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--69.05 euros/noche\tPremier_Inn\tNumero de referencia:19\n");
+	printf("2--42.06 euros/noche\tIbis\tNumero de referencia:20\n");
+	printf("3--46.05 euros/noche\tAirbnb\tNumero de referencia:21\n");
+	printf("-----------------------------------------------------------------\n");
 }
 int menuPreciosBath() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--50.23-NH\n");
-	printf("2--32.75-Airbnb\n");
-	printf("3--42.35-Holiday_Inn\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--50.23 euros/noche\tNH\tNumero de referencia:22\n");
+	printf("2--32.75 euros/noche\tAirbnb\tNumero de referencia:23\n");
+	printf("3--42.35 euros/noche\tHoliday_Inn24\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosBerlin() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--50.00-Radisson_Blu_Hotel\n");
-	printf("2--42.30-Nook\n");
-	printf("3--46.78-Melia\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--50.00 euros/noche\tRadisson_Blu_Hotel\tNumero de referencia:25\n");
+	printf("2--42.30 euros/noche\tNook\tNumero de referencia:26\n");
+	printf("3--46.78 euros/noche\tMelia\tNumero de referencia:27\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosMunich() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--38.20-NH\n");
-	printf("2--32.45-Airbnb\n");
-	printf("3--46.80-Amba\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--38.20 euros/noche\tNH\tNumero de referencia:28\n");
+	printf("2--32.45 euros/noche\tAirbnb\tNumero de referencia:29\n");
+	printf("3--46.80 euros/noche\tAmba\tNumero de referencia:30\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosLisboa() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--40.30-Airbnb\n");
-	printf("2--32.60-NH\n");
-	printf("3--60.13-Luxury\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--40.30 euros/noche\tAirbnb\tNumero de referencia:31\n");
+	printf("2--32.60 euros/noche\tNH\tNumero de referencia:32\n");
+	printf("3--60.13 euros/noche\tLuxury\tNumero de referencia:33\n");
+	printf("-----------------------------------------------------------------\n");
 }
 
 int menuPreciosOporto() {
-	printf("-------------------------------------------------------\n");
-	printf("Ahora seleccione el precio que desea pagar por noche:\n");
-	printf("1--60.00-Avid\n");
-	printf("2--43.20-Airbnb\n");
-	printf("3--52.23-Melia\n");
-	printf("-------------------------------------------------------\n");
+	printf("-----------------------------------------------------------------\n");
+	printf("Para este destino, ofrecemos los siguientes hoteles:\n");
+	printf("Recuerde el numero de referencia para poder hacer una reserva\n");
+	printf("1--60.00 euros/noche\tAvid\tNumero de referencia:34\n");
+	printf("2--43.20 euros/noche\tAirbnb\tNumero de referencia:35\n");
+	printf("3--52.23 euros/noche\tMelia\tNumero de referencia:36\n");
+	printf("-----------------------------------------------------------------\n");
 }
