@@ -1,33 +1,20 @@
 #include <stdio.h>
 #include <string.h>
+
 void pancarta();
 int menuPrincipal();
 int menuSecundario();
 int menuPaises();
-int menuCiudadesEspannya();
-int menuCiudadesFrancia();
-int menuCiudadesItalia();
-int menuCiudadesInglaterra();
-int menuCiudadesAlemania();
-int menuCiudadesPortugal();
-int menuPreciosMadrid();
-int menuPreciosBarcelona();
-int menuPreciosParis();
-int menuPreciosLyon();
-int menuPreciosRoma();
-int menuPreciosVenecia();
-int menuPreciosLondres();
-int menuPreciosBath();
-int menuPreciosBerlin();
-int menuPreciosMunich();
-int menuPreciosLisboa();
-int menuPreciosOporto();
-
+int menuCiudadesEspannya(), menuCiudadesFrancia(), menuCiudadesItalia(), menuCiudadesInglaterra(), menuCiudadesAlemania(), menuCiudadesPortugal();
+int menuPreciosMadrid(), menuPreciosBarcelona(), menuPreciosParis(), menuPreciosLyon(), menuPreciosRoma(), menuPreciosVenecia(), menuPreciosLondres(), menuPreciosBath(), menuPreciosBerlin(), menuPreciosMunich(), menuPreciosLisboa(), menuPreciosOporto();
 
 struct usuario {
 	char nombre[100];
 	char clave[10];
+	char nombreReserva[100];
+	int numReserva;
 };
+
 struct reserva {
 	int dia_llegada;
 	int dia_salida;
@@ -35,8 +22,8 @@ struct reserva {
 	int mes_salida;
 	int numReferencia;
 	char nombreReserva[100];
-	
 };
+
 struct hotel {
 	int numHotel;
 	char pais[100];	
@@ -44,14 +31,17 @@ struct hotel {
 	char hotel[100];	
 	float precio;
 };
+
 struct comentario {
 	char mensaje[200];
 };
+
 
 int datosUsuarios(struct usuario usuarios[]);
 int seccionComentarios(struct comentario comentarios[]);
 int datosReservas(struct reserva reservas[]);
 //int datosHoteles(struct hotel hoteles[]);
+
 
 //Menu del trabajo:
 int main() {
@@ -74,9 +64,9 @@ int main() {
 	nReservas = datosReservas(reservas);
 	
 	//Leer fichero Hoteles.txt
-//	nHoteles = datosHoteles(hoteles);
-	
-	
+	//nHoteles = datosHoteles(hoteles);
+
+
 	//Pancarta
 	pancarta();
 	
@@ -128,7 +118,7 @@ int main() {
 			
 		case 'i':
 		case 'I':
-			//Inicio de sesi�n
+			//Inicio de sesión
 			j=nUsuarios+1;
 				
 			do{
@@ -141,7 +131,7 @@ int main() {
 					comparador=strcmp(usuarios[nUsuarios].nombre, usuarios[j].nombre);
 					if(comparador==0) {
 						do {
-							//Comprobamos que la contrase�a sea correcta
+							//Comprobamos que la contraseña sea correcta
 							printf("Introduzca su clave para acceder:\n");
 							scanf("%s", usuarios[j].clave);
 							for(nUsuarios=0;nUsuarios<j; nUsuarios++) {
@@ -175,6 +165,7 @@ int main() {
 			printf("La opcion es incorrecta\n");
 			return 0;			
 	}
+	
 	//Guardar la memoria en el .txt
 			FILE * pregistro;
     		pregistro = fopen("Registro.txt", "a"); 
@@ -187,6 +178,7 @@ int main() {
 			}
     		fclose(pregistro);
     		fflush(stdin);
+    		
 	//Menu secundario:
 	do{
 		menuSecundario();
@@ -196,6 +188,7 @@ int main() {
 		switch(opcion2) {
 			case 'r':
 			case 'R':
+				
 				printf("Ha seleccionado: hacer una reserva\n");
 				
 				//Numero de referencia del hotel
@@ -230,14 +223,17 @@ int main() {
 				
 				printf("Se ha hecho la reserva correctamente\n");	
 				break;
+				
 			case 'h':
 			case 'H':
+				
 				printf("Ha seleccionado: Buscar hoteles\n");
 				menuPaises();
 				printf("Introduzca la opcion: \n");
 				fflush(stdin);
 				scanf("%c", &opcion3);
 				switch(opcion3) {
+					
 					case '1':
 						printf("Ha elegido Espannya como lugar de destino\n");
 						menuCiudadesEspannya();
@@ -255,6 +251,7 @@ int main() {
 								break;
 						}
 						break;
+						
 					case '2':
 						printf("Ha elegido Francia como lugar de destino\n");
 						menuCiudadesFrancia();
@@ -263,7 +260,7 @@ int main() {
 						scanf("%c", &opcion5);
 						switch(opcion5) {
 							case '1': 
-								printf("Ha elegido París como lugar de destino\n");
+								printf("Ha elegido Paris como lugar de destino\n");
 								menuPreciosParis();
 							    break;
 							case '2': 
@@ -272,6 +269,7 @@ int main() {
 								break;
 						}
 						break;
+						
 					case '3':
 						printf("Ha elegido Italia como lugar de destino\n");
 						menuCiudadesItalia();
@@ -289,6 +287,7 @@ int main() {
 								break;
 						}
 						break;
+						
 					case '4':
 						printf("Ha elegido Inglaterra como lugar de destino\n");
 						menuCiudadesInglaterra();
@@ -306,6 +305,7 @@ int main() {
 								break;
 						}
 						break;
+						
 					case '5':
 						printf("Ha elegido Alemania como lugar de destino\n");
 						menuCiudadesAlemania();
@@ -314,15 +314,16 @@ int main() {
 						scanf("%c", &opcion8);
 						switch(opcion8) {
 							case '1': 
-								printf("Ha elegido Berlín como lugar de destino\n");
+								printf("Ha elegido Berlin como lugar de destino\n");
 								menuPreciosBerlin();
 							    break;
 							case '2': 
-								printf("Ha elegido Múnich como lugar de destino\n");
+								printf("Ha elegido Munich como lugar de destino\n");
 								menuPreciosMunich();
 								break;
 						}
 						break;
+						
 					case '6':
 						printf("Ha elegido Portugal como lugar de destino\n");
 						menuCiudadesPortugal();
@@ -342,12 +343,15 @@ int main() {
 						break;
 				}
 				break;
+				
 			case 'b':
 			case 'B':
 				printf("Borrar reserva\n");
 				break;
+				
 			case 'c':
 			case 'C':
+				
 				printf("Ha seleccionado: consultar reserva\n");
 				do {
 					//Nombre	
@@ -366,8 +370,10 @@ int main() {
 				} while (strcmp(reservas[nReservas].nombreReserva, reservas[r].nombreReserva)!=0);
 				
 				break;
+				
 			case 'a':
 			case 'A':
+				
 				printf("Ha seleccionado la opcion: 'Seccion de comentarios'\n");
 				printf("Si desea leer comentarios pulse 1\n");
 				printf("Si desea escribir un comentario pulse 2\n");
@@ -386,12 +392,11 @@ int main() {
 					default:
 						printf("La opcion es incorrecta\n");
 				}
-				break;			
+				break;	
+						
 			case 's':
 			case 'S':
 				//Salir del programa
-				
-
 				
 				printf("Gracias por utilizar este programa\n");
 				return 0;
@@ -402,6 +407,7 @@ int main() {
 		
 
 	} while (opcion2 != 'S' && opcion2 != 's');
+	
 	
 	//Guardar la memoria en Comentarios.txt
 		FILE * fentrada;
@@ -415,6 +421,7 @@ int main() {
 		}	
 		fclose(fentrada);
 		fflush(stdin);
+		
 		
 		//Guardar memoria en Reserva.txt
 		FILE * freserva;
@@ -457,6 +464,7 @@ int menuSecundario(){
 	printf("S--Salir del programa\n");
 	printf("--------------------------\n");
 }
+
 int datosUsuarios(struct usuario usuarios[]) {
 	//Leer fichero .txt
 	int nUsuarios = 0, i=0;
@@ -474,6 +482,7 @@ int datosUsuarios(struct usuario usuarios[]) {
 	fclose(pregistro);
 	return nUsuarios;
 }
+
 int seccionComentarios(struct comentario comentarios[]) {
 	//Leer fichero Comentarios.txt
 	int nComentarios = 0, k=0;
@@ -490,6 +499,7 @@ int seccionComentarios(struct comentario comentarios[]) {
 	fclose(fentrada);
 	return nComentarios;
 }
+
 int datosReservas(struct reserva reservas[]) {
 	//Leer fichero Reserva.txt
 	int nReservas = 0, r=0;
@@ -506,6 +516,7 @@ int datosReservas(struct reserva reservas[]) {
 	fclose(freserva);
 	return nReservas;
 }
+
 /*
 int datosHoteles(struct hotel hoteles[]) {
 	int nHoteles = 0, h=0;
@@ -525,7 +536,7 @@ int datosHoteles(struct hotel hoteles[]) {
 
 int menuPaises() {
 	printf("--------------------------------\n");
-	printf("Seleccione un país de destino:\n");
+	printf("Seleccione un paÃ­s de destino:\n");
 	printf("1--Espannya\n");
 	printf("2--Francia\n");
 	printf("3--Italia\n");
@@ -546,7 +557,7 @@ int menuCiudadesEspannya() {
 int menuCiudadesFrancia() {
 	printf("----------------------------------------\n");
 	printf("Ahora seleccione una ciudad de destino:\n");
-	printf("1--París\n");
+	printf("1--Paris\n");
 	printf("2--Lyon\n");
 	printf("----------------------------------------\n");
 }
@@ -570,8 +581,8 @@ int menuCiudadesInglaterra() {
 int menuCiudadesAlemania() {
 	printf("----------------------------------------\n");
 	printf("Ahora seleccione una ciudad de destino:\n");
-	printf("1--Berlín\n");
-	printf("2--Múnich\n");
+	printf("1--Berlin\n");
+	printf("2--Munich\n");
 	printf("----------------------------------------\n");
 }
 
