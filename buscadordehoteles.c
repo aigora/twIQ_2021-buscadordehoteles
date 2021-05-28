@@ -343,12 +343,7 @@ int main() {
 						break;
 				}
 				break;
-				
-			case 'b':
-			case 'B':
-				printf("Borrar reserva\n");
-				break;
-				
+			
 			case 'c':
 			case 'C':
 				
@@ -458,7 +453,6 @@ int menuSecundario(){
 	printf("Que desea hacer?:\n");
 	printf("R--Hacer una reserva\n");
 	printf("H--Buscar hoteles\n");
-	printf("B--Borrar reserva\n");
 	printf("C--Consultar Reserva\n");
 	printf("A--Seccion de comentarios\n");
 	printf("S--Salir del programa\n");
