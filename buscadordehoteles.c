@@ -1,5 +1,6 @@
   #include <stdio.h>
   #include <string.h>
+
 void pancarta();
 int menuPrincipal();
 int menuSecundario();
